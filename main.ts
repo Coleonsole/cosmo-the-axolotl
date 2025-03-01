@@ -29,6 +29,47 @@ let myRock: Sprite = null
 let mySat: Sprite = null
 let projectile: Sprite = null
 let myShip: Sprite = null
+let list = [img`
+    . . . . . . . 9 9 9 9 9 9 9 . . . . . . . 
+    . . . . . . 9 9 9 9 9 9 9 9 9 . . . . . . 
+    . . . . . 9 9 1 9 9 9 9 9 1 9 9 . . . . . 
+    . . . . . 9 1 9 1 9 9 9 1 9 1 9 . . . . . 
+    . . . . . 9 9 1 5 5 5 5 5 1 9 9 . . . . . 
+    . . 4 4 4 9 1 9 5 e 5 e 5 9 1 9 4 4 4 . . 
+    e 4 4 5 4 4 9 1 5 5 5 5 5 1 9 4 4 5 4 4 e 
+    2 e 4 4 4 4 4 4 4 5 5 5 4 4 4 4 4 4 4 e 2 
+    . 2 e 4 4 4 5 4 4 4 4 4 4 4 5 4 4 4 e 2 . 
+    . 5 2 2 e 4 4 4 4 4 4 4 4 4 4 4 e 2 2 5 . 
+    . . . 5 2 2 2 2 2 2 2 2 2 2 2 2 2 5 . . . 
+    . . . . . . . . . . . . . . . . . . . . . 
+    `, img`
+    . . . . . . . 9 9 9 9 9 9 9 . . . . . . . 
+    . . . . . . 9 9 9 9 9 9 9 9 9 . . . . . . 
+    . . . . . 9 9 1 9 9 9 9 9 1 9 9 . . . . . 
+    . . . . . 9 1 9 1 9 9 9 1 9 1 9 . . . . . 
+    . . . . . 9 9 1 8 8 8 8 8 1 9 9 . . . . . 
+    . . 4 4 4 9 1 9 8 e 8 e 8 9 1 9 4 4 4 . . 
+    e 4 4 5 4 4 9 1 8 8 8 8 8 1 9 4 4 5 4 4 e 
+    2 e 4 4 4 4 4 4 4 8 8 8 4 4 4 4 4 4 4 e 2 
+    . 2 e 4 4 4 5 4 4 4 4 4 4 4 5 4 4 4 e 2 . 
+    . 5 2 2 e 4 4 4 4 4 4 4 4 4 4 4 e 2 2 5 . 
+    . . . 5 2 2 2 2 2 2 2 2 2 2 2 2 2 5 . . . 
+    . . . . . . . . . . . . . . . . . . . . . 
+    `, img`
+    . . . . . . . 9 9 9 9 9 9 9 . . . . . . . 
+    . . . . . . 9 9 9 9 9 9 9 9 9 . . . . . . 
+    . . . . . 9 9 1 9 9 9 9 9 1 9 9 . . . . . 
+    . . . . . 9 1 9 1 9 9 9 1 9 1 9 . . . . . 
+    . . . . . 9 9 1 6 6 6 6 6 1 9 9 . . . . . 
+    . . 4 4 4 9 1 9 6 e 6 e 6 9 1 9 4 4 4 . . 
+    e 4 4 5 4 4 9 1 6 6 6 6 6 1 9 4 4 5 4 4 e 
+    2 e 4 4 4 4 4 4 4 6 6 6 4 4 4 4 4 4 4 e 2 
+    . 2 e 4 4 4 5 4 4 4 4 4 4 4 5 4 4 4 e 2 . 
+    . 5 2 2 e 4 4 4 4 4 4 4 4 4 4 4 e 2 2 5 . 
+    . . . 5 2 2 2 2 2 2 2 2 2 2 2 2 2 5 . . . 
+    . . . . . . . . . . . . . . . . . . . . . 
+    `]
+let lol_u_guys = [0, 1]
 let speed = 1000
 scene.setBackgroundImage(img`
     eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
@@ -295,20 +336,7 @@ game.onUpdateInterval(5000, function () {
     }
 })
 game.onUpdateInterval(2000, function () {
-    mySat = sprites.createProjectileFromSide(img`
-        . . . . . . . 9 9 9 9 9 9 9 . . . . . . . 
-        . . . . . . 9 9 9 9 9 9 9 9 9 . . . . . . 
-        . . . . . 9 9 1 9 9 9 9 9 1 9 9 . . . . . 
-        . . . . . 9 1 9 1 9 9 9 1 9 1 9 . . . . . 
-        . . . . . 9 9 1 5 5 5 5 5 1 9 9 . . . . . 
-        . . 4 4 4 9 1 9 5 e 5 e 5 9 1 9 4 4 4 . . 
-        e 4 4 5 4 4 9 1 5 5 5 5 5 1 9 4 4 5 4 4 e 
-        2 e 4 4 4 4 4 4 4 5 5 5 4 4 4 4 4 4 4 e 2 
-        . 2 e 4 4 4 5 4 4 4 4 4 4 4 5 4 4 4 e 2 . 
-        . 5 2 2 e 4 4 4 4 4 4 4 4 4 4 4 e 2 2 5 . 
-        . . . 5 2 2 2 2 2 2 2 2 2 2 2 2 2 5 . . . 
-        . . . . . . . . . . . . . . . . . . . . . 
-        `, 0, 50)
+    mySat = sprites.createProjectileFromSide(list._pickRandom(), 0, 50)
     mySat.x = randint(5, 155)
     mySat.setKind(SpriteKind.Satellite)
     animation.runImageAnimation(
