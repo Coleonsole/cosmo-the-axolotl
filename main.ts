@@ -443,7 +443,7 @@ game.onUpdateInterval(2000, function () {
     )
 })
 game.onUpdateInterval(speed, function () {
-    myRock = sprites.createProjectileFromSide(list._pickRandom(), 0, 90)
+    myRock = sprites.createProjectileFromSide(lol_u_guys._pickRandom(), 0, 90)
     myRock.x = randint(5, 155)
     myRock.setKind(SpriteKind.Enemy)
 })
