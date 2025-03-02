@@ -1,7 +1,7 @@
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Satellite, function (sprite, otherSprite) {
     sprite.destroy()
     info.changeScoreBy(1)
-    otherSprite.sayText("Uploading...")
+    otherSprite.sayText(text_list._pickRandom(), 2000, true)
     otherSprite.setVelocity(-30, -30)
 })
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
@@ -29,6 +29,19 @@ let myRock: Sprite = null
 let mySat: Sprite = null
 let projectile: Sprite = null
 let myShip: Sprite = null
+let text_list: string[] = []
+text_list = [
+"Thank's, Cosmo",
+"Nice!",
+"Good job!",
+"Thank's, I guess...",
+"Respect...",
+"Nice!",
+"Great!",
+"Cool!",
+"That's kind of you!",
+"Danke. Tschüss!"
+]
 let list = [img`
     . . . . . . . 9 9 9 9 9 9 9 . . . . . . . 
     . . . . . . 9 9 9 9 9 9 9 9 9 . . . . . . 
