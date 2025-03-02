@@ -1,8 +1,14 @@
+namespace SpriteKind {
+    export const Blank = SpriteKind.create()
+}
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Satellite, function (sprite, otherSprite) {
-    sprite.destroy()
-    info.changeScoreBy(1)
-    otherSprite.sayText(text_list._pickRandom(), 2000, true)
-    otherSprite.setVelocity(-30, -30)
+    if (Antipoint != otherSprite) {
+        sprite.destroy()
+        info.changeScoreBy(1)
+        otherSprite.sayText(text_list._pickRandom(), 2000, true)
+        otherSprite.setVelocity(-30, -30)
+    }
+    Antipoint = otherSprite
 })
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     projectile = sprites.createProjectileFromSprite(img`
@@ -30,6 +36,25 @@ let mySat: Sprite = null
 let projectile: Sprite = null
 let myShip: Sprite = null
 let text_list: string[] = []
+let Antipoint: Sprite = null
+Antipoint = sprites.create(img`
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    `, SpriteKind.Blank)
 text_list = [
 "Thank's, Cosmo",
 "Nice!",
