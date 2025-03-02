@@ -40,7 +40,8 @@ text_list = [
 "Great!",
 "Cool!",
 "That's kind of you!",
-"Danke. Tschüss!"
+"Danke. Tschüss!",
+"Noice"
 ]
 let list = [img`
     . . . . . . . 9 9 9 9 9 9 9 . . . . . . . 
